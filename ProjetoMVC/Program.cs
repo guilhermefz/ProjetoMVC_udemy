@@ -8,12 +8,12 @@ namespace ProjetoMVC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<ProjetoMVCContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("ProjetoMVCContext") ?? throw new InvalidOperationException("Connection string 'ProjetoMVCContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            var connectionString = builder.Configuration.GetConnectionString("ProjetoMVCContext");
+            builder.Services.AddDbContext<ProjetoMVCContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
