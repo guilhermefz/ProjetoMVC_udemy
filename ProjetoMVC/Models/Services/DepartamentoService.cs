@@ -1,4 +1,5 @@
-﻿using ProjetoMVC.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Data;
 using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Models.Services
@@ -15,6 +16,12 @@ namespace ProjetoMVC.Models.Services
         public List<Departamento> ListarDepartamentos()
         {
             return _context.Departamento.OrderBy(x => x.Nome).ToList();
+        }
+
+        public async Task<Departamento> BuscarDepartamentoPorIdAsync(int id)
+        {
+            return await _context.Departamento.FirstOrDefaultAsync(c => c.Id == id);
+            
         }
     }
 }

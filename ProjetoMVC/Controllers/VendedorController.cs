@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Models;
@@ -41,6 +42,25 @@ namespace ProjetoMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _vendedorService.Excluir(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task <IActionResult> Detalhes(int? id)
+        {
+            if(id == null){
+                NotFound(); }
+
+            var vend = await _vendedorService.BuscarVendedorPorId(id.Value);
+            if(vend == null)
+            {
+                return NotFound();
+            }
+            return View(vend);
+        }
 
     }
 }
