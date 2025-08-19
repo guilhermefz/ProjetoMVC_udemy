@@ -7,9 +7,13 @@ namespace ProjetoMVC.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "O nome é obrigatório")]
         public string Nome { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateOnly Nascimento { get; set; }
         [Display(Name = "Salário Base")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double SalarioBase { get; set; }
         [Display(Name = "Departamento")]
         public int DepartamentoId { get; set; }
