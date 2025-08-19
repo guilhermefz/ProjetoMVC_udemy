@@ -9,7 +9,9 @@ namespace ProjetoMVC.Models
         public string Nome { get; set; }
         public string Email { get; set; }
         public DateOnly Nascimento { get; set; }
+        [Display(Name = "Salário Base")]
         public double SalarioBase { get; set; }
+        [Display(Name = "Departamento")]
         public int DepartamentoId { get; set; }
         public Departamento Departamento { get; set; }
         public ICollection<RegistroVendas> RegistroVendas { get; set; } = new List<RegistroVendas>();

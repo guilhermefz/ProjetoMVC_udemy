@@ -62,5 +62,45 @@ namespace ProjetoMVC.Controllers
             return View(vend);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var vendedor = _vendedorService.BuscarVendedorPorId(id.Value).Result;
+            if (vendedor == null)
+            {
+                return NotFound();
+            }
+            var departamentos = _departamentoService.ListarDepartamentos();
+            var viewModel = new VendedorFormularioDto
+            {
+                Vendedor = vendedor,
+                Departamentos = departamentos
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Vendedor vendedor)
+        {
+            if (id != vendedor.Id)
+            {
+                return NotFound();
+            }
+            try
+            {
+                _vendedorService.Atualizar(vendedor);
+                return RedirectToAction(nameof(Index));
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            ;
+        }
+
     }
 }

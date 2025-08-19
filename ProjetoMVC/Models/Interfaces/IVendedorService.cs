@@ -7,5 +7,7 @@
         Task CriarVendedores(Vendedor vendedor);
         Task Excluir(int id);
         Task<Vendedor> BuscarVendedorPorId(int id);
+
+        void Atualizar(Vendedor obj);
     }
 }
