@@ -19,6 +19,7 @@ namespace ProjetoMVC.Controllers
             _context = context;
         }
 
+
         // GET: Departamentos
         public async Task<IActionResult> Index()
         {

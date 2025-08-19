@@ -1,0 +1,29 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Data;
+using ProjetoMVC.Models.Interfaces;
+
+namespace ProjetoMVC.Models.Services
+{
+    public class VendedorService : IVendedorService
+    {
+        private readonly ProjetoMVCContext _context;
+
+        public VendedorService(ProjetoMVCContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<List<Vendedor>> ListarVendedoresAsync()
+        {
+            return await _context.Vendedor.ToListAsync();
+        }
+        public async Task CriarVendedores(Vendedor vendedor)
+        {
+            _context.Add(vendedor);
+            await _context.SaveChangesAsync();
+        }
+
+
+    }
+}

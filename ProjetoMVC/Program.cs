@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoMVC.Data;
+using ProjetoMVC.Models.Interfaces;
+using ProjetoMVC.Models.Services;
 namespace ProjetoMVC
 {
     public class Program
@@ -11,6 +13,8 @@ namespace ProjetoMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IVendedorService, VendedorService>();
+            builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
 
             var connectionString = builder.Configuration.GetConnectionString("ProjetoMVCContext");
             builder.Services.AddDbContext<ProjetoMVCContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));

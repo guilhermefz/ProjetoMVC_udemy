@@ -1,12 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Models;
+using ProjetoMVC.Models.Dtos;
+using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Controllers
 {
     public class VendedorController : Controller
     {
-        public IActionResult Index()
+        private readonly IVendedorService _vendedorService;
+        private readonly IDepartamentoService _departamentoService;
+
+        public VendedorController(IVendedorService vendedorService, IDepartamentoService departamentoService)
         {
-            return View();
+            _vendedorService = vendedorService;
+            _departamentoService = departamentoService;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            var list = await _vendedorService.ListarVendedoresAsync();
+            return View(list);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var departamentos = _departamentoService.ListarDepartamentos();
+            var viewModel = new VendedorFormularioDto { Departamentos = departamentos };
+            
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Vendedor vendedor)
+        {
+            await _vendedorService.CriarVendedores(vendedor);
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
