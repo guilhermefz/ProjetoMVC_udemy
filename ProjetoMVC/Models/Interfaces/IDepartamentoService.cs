@@ -2,7 +2,7 @@
 {
     public interface IDepartamentoService
     {
-        List<Departamento> ListarDepartamentos();
+        Task<List<Departamento>> ListarDepartamentos();
         Task<Departamento> BuscarDepartamentoPorIdAsync(int id);
 
     }

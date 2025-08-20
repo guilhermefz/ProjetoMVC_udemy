@@ -26,9 +26,9 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var departamentos = _departamentoService.ListarDepartamentos();
+            var departamentos = await _departamentoService.ListarDepartamentos();
             var viewModel = new VendedorFormularioDto { Departamentos = departamentos };
             
             return View(viewModel);
@@ -63,7 +63,7 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -74,7 +74,7 @@ namespace ProjetoMVC.Controllers
             {
                 return NotFound();
             }
-            var departamentos = _departamentoService.ListarDepartamentos();
+            var departamentos = await _departamentoService.ListarDepartamentos();
             var viewModel = new VendedorFormularioDto
             {
                 Vendedor = vendedor,

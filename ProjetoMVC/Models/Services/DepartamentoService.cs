@@ -13,9 +13,9 @@ namespace ProjetoMVC.Models.Services
             _context = context;
         }
 
-        public List<Departamento> ListarDepartamentos()
+        public async Task<List<Departamento>> ListarDepartamentos()
         {
-            return _context.Departamento.OrderBy(x => x.Nome).ToList();
+            return await _context.Departamento.OrderBy(x => x.Nome).ToListAsync();
         }
 
         public async Task<Departamento> BuscarDepartamentoPorIdAsync(int id)

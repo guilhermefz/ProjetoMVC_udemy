@@ -5,19 +5,27 @@ namespace ProjetoMVC.Models
     public class Vendedor
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "O nome é obrigatório")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "O nome deve ter entre 3 e 60 caracteres")]
         public string Nome { get; set; }
+        [Required(ErrorMessage = "O email é obrigatório")]
+        [EmailAddress(ErrorMessage = "O email deve ser um endereço de email válido")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateOnly Nascimento { get; set; }
+        [Required(ErrorMessage = "Ta errado")]
+        public DateOnly? Nascimento { get; set; }
+        [Range(100.0, 100000.0, ErrorMessage = "O salário deve estar entre R$ 100,00 e R$ 100.000,00")]
         [Display(Name = "Salário Base")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
-        public double SalarioBase { get; set; }
+        [Required(ErrorMessage = "O salário é obrigatório")]
+        public double? SalarioBase { get; set; }
         [Display(Name = "Departamento")]
+        [Required(ErrorMessage = "Ta errado")]
         public int DepartamentoId { get; set; }
-        public Departamento Departamento { get; set; }
+        public Departamento Departamento { get; set; } 
         public ICollection<RegistroVendas> RegistroVendas { get; set; } = new List<RegistroVendas>();
 
 
