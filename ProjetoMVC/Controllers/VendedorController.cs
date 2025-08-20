@@ -38,10 +38,6 @@ namespace ProjetoMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Vendedor vendedor)
         {
-            if(vendedor.Id == 0 || vendedor.Email == null || vendedor.SalarioBase == 0)
-            {
-                return BadRequest("Vendedor não pode ser nulo.");
-            }
             var departamento = await _departamentoService.BuscarDepartamentoPorIdAsync(vendedor.DepartamentoId);
             vendedor.Departamento = departamento;
 
