@@ -1,4 +1,5 @@
 ﻿using ProjetoMVC.Models.Enuns;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoMVC.Models
 {

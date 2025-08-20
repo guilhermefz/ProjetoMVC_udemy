@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoMVC.Models;
+using ProjetoMVC.Models.Dtos;
 using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Controllers
@@ -8,10 +9,12 @@ namespace ProjetoMVC.Controllers
     {
 
         private readonly IRegistroVendasService _registroVendasService;
+        private readonly IVendedorService _vendedorService;
 
-        public RegistroVendasController(IRegistroVendasService registroVendasService)
+        public RegistroVendasController(IRegistroVendasService registroVendasService, IVendedorService vendedorService)
         {
             _registroVendasService = registroVendasService;
+            _vendedorService = vendedorService;
         }
 
 
@@ -21,9 +24,13 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var regitro = new RegistroVendasDto();
+            var vendedores = await _vendedorService.ListarVendedoresAsync();
+            regitro.Vendedores = vendedores;
+
+            return View(regitro);
         }
 
         [HttpPost]

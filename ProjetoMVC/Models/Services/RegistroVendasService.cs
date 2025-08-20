@@ -19,5 +19,10 @@ namespace ProjetoMVC.Models.Services
             _context.Add(registroVendas);
             _context.SaveChanges();
         }
+
+        public List<RegistroVendas> BuscarRegistros()
+        {
+            return _context.RegistroVendas.ToList();
+        }
     }
 }
