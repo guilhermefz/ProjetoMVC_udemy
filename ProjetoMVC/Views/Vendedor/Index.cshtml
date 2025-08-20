@@ -17,7 +17,9 @@
             <th>@Html.DisplayNameFor(model => model.Email)</th>
             <th>@Html.DisplayNameFor(model => model.Nascimento)</th>
             <th>@Html.DisplayNameFor(model => model.SalarioBase)</th>
-            <th></th>
+            <th>Del</th>
+            <th>Det</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -28,10 +30,8 @@
                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
                 <td>@Html.DisplayFor(modelItem => item.Nascimento)</td>
                 <td>@Html.DisplayFor(modelItem => item.SalarioBase)</td>
-                <td>
-                    <a asp-action="Edit">
-                        <i class="bi bi-pen"></i>
-                    </a>
+            <div>    
+               <td>
                     <form asp-action="Delete" asp-route-id="@item.Id" method="post"
                           onsubmit="return confirm('Tem certeza que deseja excluir?')">
 
@@ -39,9 +39,18 @@
                             <i class="bi bi-trash3-fill"></i>
                         </button>
                     </form>
-                     <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 </td>
+                <td>
+                     <a asp-action="Detalhes" asp-route-id="@item.Id">
+                        <i class="bi bi-arrow-right-circle-fill"></i>
+                     </a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="bi bi-pen"></i>
+                    </a> 
+                </td>
+            </div>
             </tr>
         }
     </tbody>
