@@ -15,6 +15,7 @@ namespace ProjetoMVC
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IVendedorService, VendedorService>();
             builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
+            builder.Services.AddScoped<IRegistroVendasService, RegistroVendasService>();
 
             var connectionString = builder.Configuration.GetConnectionString("ProjetoMVCContext");
             builder.Services.AddDbContext<ProjetoMVCContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
