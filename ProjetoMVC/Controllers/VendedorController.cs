@@ -46,13 +46,13 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
             await _vendedorService.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task <IActionResult> Detalhes(int? id)
+        public async Task <IActionResult> Detalhes(long? id)
         {
             if(id == null){
                 NotFound(); }
@@ -66,7 +66,7 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
             {
@@ -87,7 +87,7 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, Vendedor vendedor)
+        public IActionResult Edit(long id, Vendedor vendedor)
         {
             if (id != vendedor.Id)
             {

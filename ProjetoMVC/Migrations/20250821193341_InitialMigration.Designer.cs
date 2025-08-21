@@ -12,8 +12,8 @@ using ProjetoMVC.Data;
 namespace ProjetoMVC.Migrations
 {
     [DbContext(typeof(ProjetoMVCContext))]
-    [Migration("20250818183510_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20250821193341_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.Departamento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -42,16 +42,44 @@ namespace ProjetoMVC.Migrations
                     b.ToTable("Departamento");
                 });
 
+            modelBuilder.Entity("ProjetoMVC.Models.Produto", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Preco")
+                        .HasColumnType("double");
+
+                    b.Property<long>("QuantidadeEstoque")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("RegistroVendasId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegistroVendasId");
+
+                    b.ToTable("Produto");
+                });
+
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendas", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("Data")
+                        .HasColumnType("date");
 
                     b.Property<double>("Quantidade")
                         .HasColumnType("double");
@@ -59,8 +87,8 @@ namespace ProjetoMVC.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("VendedorId")
-                        .HasColumnType("int");
+                    b.Property<long>("VendedorId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -71,27 +99,30 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.Vendedor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("DepartamentoId")
-                        .HasColumnType("int");
+                    b.Property<long>("DepartamentoId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("Nascimento")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly?>("Nascimento")
+                        .IsRequired()
+                        .HasColumnType("date");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)");
 
-                    b.Property<double>("SalarioBase")
+                    b.Property<double?>("SalarioBase")
+                        .IsRequired()
                         .HasColumnType("double");
 
                     b.HasKey("Id");
@@ -101,15 +132,20 @@ namespace ProjetoMVC.Migrations
                     b.ToTable("Vendedor");
                 });
 
+            modelBuilder.Entity("ProjetoMVC.Models.Produto", b =>
+                {
+                    b.HasOne("ProjetoMVC.Models.RegistroVendas", null)
+                        .WithMany("Produtos")
+                        .HasForeignKey("RegistroVendasId");
+                });
+
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendas", b =>
                 {
-                    b.HasOne("ProjetoMVC.Models.Vendedor", "Vendedor")
+                    b.HasOne("ProjetoMVC.Models.Vendedor", null)
                         .WithMany("RegistroVendas")
                         .HasForeignKey("VendedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Vendedor");
                 });
 
             modelBuilder.Entity("ProjetoMVC.Models.Vendedor", b =>
@@ -126,6 +162,11 @@ namespace ProjetoMVC.Migrations
             modelBuilder.Entity("ProjetoMVC.Models.Departamento", b =>
                 {
                     b.Navigation("Vendedores");
+                });
+
+            modelBuilder.Entity("ProjetoMVC.Models.RegistroVendas", b =>
+                {
+                    b.Navigation("Produtos");
                 });
 
             modelBuilder.Entity("ProjetoMVC.Models.Vendedor", b =>

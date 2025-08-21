@@ -9,7 +9,7 @@
         {
         }
 
-        public Departamento(int id, string nome)
+        public Departamento(long id, string nome)
         {
             Id = id;
             Nome = nome;

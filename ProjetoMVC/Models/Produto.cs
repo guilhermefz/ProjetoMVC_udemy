@@ -6,6 +6,6 @@ namespace ProjetoMVC.Models
     {
         public string Nome { get; set; }
         public double Preco { get; set; }
-        public int QuantidadeEstoque { get; set; }
+        public long QuantidadeEstoque { get; set; }
     }
 }

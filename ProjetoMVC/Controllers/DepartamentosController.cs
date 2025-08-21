@@ -27,7 +27,7 @@ namespace ProjetoMVC.Controllers
         }
 
         // GET: Departamentos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
             {
@@ -67,7 +67,7 @@ namespace ProjetoMVC.Controllers
         }
 
         // GET: Departamentos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
             {
@@ -87,7 +87,7 @@ namespace ProjetoMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Departamento departamento)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Nome")] Departamento departamento)
         {
             if (id != departamento.Id)
             {
@@ -118,7 +118,7 @@ namespace ProjetoMVC.Controllers
         }
 
         // GET: Departamentos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
             {
@@ -138,7 +138,7 @@ namespace ProjetoMVC.Controllers
         // POST: Departamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var departamento = await _context.Departamento.FindAsync(id);
             if (departamento != null)

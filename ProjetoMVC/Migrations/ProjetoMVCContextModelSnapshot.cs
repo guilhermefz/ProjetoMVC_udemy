@@ -24,11 +24,11 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.Departamento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -41,11 +41,11 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.Produto", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -54,11 +54,11 @@ namespace ProjetoMVC.Migrations
                     b.Property<double>("Preco")
                         .HasColumnType("double");
 
-                    b.Property<int>("QuantidadeEstoque")
-                        .HasColumnType("int");
+                    b.Property<long>("QuantidadeEstoque")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("RegistroVendasId")
-                        .HasColumnType("int");
+                    b.Property<long?>("RegistroVendasId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -69,11 +69,11 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendas", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<DateOnly>("Data")
                         .HasColumnType("date");
@@ -84,8 +84,8 @@ namespace ProjetoMVC.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("VendedorId")
-                        .HasColumnType("int");
+                    b.Property<long>("VendedorId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -96,14 +96,14 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.Vendedor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("DepartamentoId")
-                        .HasColumnType("int");
+                    b.Property<long>("DepartamentoId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .IsRequired()

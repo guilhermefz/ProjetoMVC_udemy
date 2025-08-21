@@ -7,24 +7,42 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProjetoMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class OtherEntities : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Departamento",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departamento", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "Vendedor",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                    Nome = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Nascimento = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Nascimento = table.Column<DateOnly>(type: "date", nullable: false),
                     SalarioBase = table.Column<double>(type: "double", nullable: false),
-                    DepartamentoId = table.Column<int>(type: "int", nullable: false)
+                    DepartamentoId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,12 +60,12 @@ namespace ProjetoMVC.Migrations
                 name: "RegistroVendas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Data = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Data = table.Column<DateOnly>(type: "date", nullable: false),
                     Quantidade = table.Column<double>(type: "double", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    VendedorId = table.Column<int>(type: "int", nullable: false)
+                    VendedorId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +78,34 @@ namespace ProjetoMVC.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Preco = table.Column<double>(type: "double", nullable: false),
+                    QuantidadeEstoque = table.Column<long>(type: "bigint", nullable: false),
+                    RegistroVendasId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Produto_RegistroVendas_RegistroVendasId",
+                        column: x => x.RegistroVendasId,
+                        principalTable: "RegistroVendas",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produto_RegistroVendasId",
+                table: "Produto",
+                column: "RegistroVendasId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RegistroVendas_VendedorId",
@@ -76,10 +122,16 @@ namespace ProjetoMVC.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Produto");
+
+            migrationBuilder.DropTable(
                 name: "RegistroVendas");
 
             migrationBuilder.DropTable(
                 name: "Vendedor");
+
+            migrationBuilder.DropTable(
+                name: "Departamento");
         }
     }
 }

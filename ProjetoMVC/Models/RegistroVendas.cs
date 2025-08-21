@@ -16,7 +16,7 @@ namespace ProjetoMVC.Models
         {
         }
 
-        public RegistroVendas(int id, DateOnly data, double quantidade, StatusVenda status, int vendedor)
+        public RegistroVendas(long id, DateOnly data, double quantidade, StatusVenda status, long vendedor)
         {
             Id = id;
             Data = data;

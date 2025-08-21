@@ -32,7 +32,7 @@ namespace ProjetoMVC.Models
         {
         }
 
-        public Vendedor(int id, string nome, string email, DateOnly nascimento, double salarioBase, Departamento departamento)
+        public Vendedor(long id, string nome, string email, DateOnly nascimento, double salarioBase, Departamento departamento)
         {
             Id = id;
             Nome = nome;
