@@ -60,7 +60,7 @@ namespace ProjetoMVC.Models
             RegistroVendas.Remove(registroVendas);
         }
 
-        public double TotalVendas(DateTime inicio, DateTime fim)
+        public double TotalVendas(DateOnly inicio, DateOnly fim)
         {
             return RegistroVendas.Where(rv => rv.Data >= inicio && rv.Data <= fim)
                                  .Sum(rv => rv.Quantidade);

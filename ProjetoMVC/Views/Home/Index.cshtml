@@ -1,8 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Pagina Inicial";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Seja bem vindo</h1>
+    <h2>use o MENU para decidir seu próximo passo</h2>
+
+    <button id="airplane" class="btn btn-danger">
+        <i class="bi bi-airplane-fill"></i>
+    </button>
 </div>
+
+<script>
+
+    const botaoAviao = document.getElementById('airplane');
+
+    if (botaoAviao) {
+        botaoAviao.addEventListener('click', () => {
+            // Lógica do confete
+            confetti({
+                particleCount: 100, // Número de confetes
+                spread: 70,         // Dispersão dos confetes
+                origin: { y: 0.6 } // Ponto de origem
+            });
+        });
+    } else {
+        console.error("Elemento com ID 'airplane' não foi encontrado.");
+    }
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.1/dist/confetti.browser.js"></script>

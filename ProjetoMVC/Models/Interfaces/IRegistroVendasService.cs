@@ -1,7 +1,10 @@
-﻿namespace ProjetoMVC.Models.Interfaces
+﻿using ProjetoMVC.Models.Dtos;
+
+namespace ProjetoMVC.Models.Interfaces
 {
     public interface IRegistroVendasService
     {
-        void CriarRegistro(RegistroVendas registroVendas);
+        Task CriarRegistro(RegistroVendas registroVendas);
+        Task<List<RegistroVendas>> BuscarRegistros();
     }
 }

@@ -21,7 +21,7 @@
             Vendedores.Add(vendedor);
         }
 
-        public double TotalVendas(DateTime inicio, DateTime fim)
+        public double TotalVendas(DateOnly inicio, DateOnly fim)
         {
             return Vendedores.Sum(v => v.TotalVendas(inicio, fim));
         }

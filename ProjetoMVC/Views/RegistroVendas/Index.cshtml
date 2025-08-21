@@ -1,4 +1,4 @@
-﻿@model RegistroVendas
+﻿@model IEnumerable<RegistroVendas>
 
 
 @{
@@ -11,3 +11,38 @@
 </p>
 
 
+<div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <th>
+            @Html.DisplayNameFor(model => model.Id)
+            </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendedorId)
+        </th>
+        </thead>
+
+    <tbody>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.Id)</td>
+                    <td>@Html.DisplayFor(model => item.Data)</td>
+                    <td>@Html.DisplayFor(model => item.Status)</td>
+                    <td>@Html.DisplayFor(model => item.Quantidade)</td>
+                    <td>@Html.DisplayFor(model => item.VendedorId)</td>
+                </tr>
+            }
+
+    </tbody>
+    </table>
+</div>

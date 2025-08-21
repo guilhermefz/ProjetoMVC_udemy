@@ -1,0 +1,7 @@
+﻿namespace ProjetoMVC.Models.Interfaces
+{
+    public interface IProdutoService
+    {
+        Task CriarProduto(Produto produto);
+    }
+}
