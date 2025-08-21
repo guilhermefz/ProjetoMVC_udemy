@@ -11,12 +11,14 @@ namespace ProjetoMVC.Controllers
         private readonly IMapper _mapper;
         private readonly IRegistroVendasService _registroVendasService;
         private readonly IVendedorService _vendedorService;
+        private readonly IProdutoService _produtoService;
 
-        public RegistroVendasController(IRegistroVendasService registroVendasService, IVendedorService vendedorService, IMapper mapper)
+        public RegistroVendasController(IRegistroVendasService registroVendasService, IVendedorService vendedorService, IMapper mapper, IProdutoService produtoService)
         {
             _registroVendasService = registroVendasService;
             _vendedorService = vendedorService;
             _mapper = mapper;
+            _produtoService = produtoService;
         }
 
 
@@ -32,6 +34,8 @@ namespace ProjetoMVC.Controllers
             var regitro = new RegistroVendasDto();
             var vendedores = await _vendedorService.ListarVendedoresAsync();
             regitro.Vendedores = vendedores;
+            var produtos = await _produtoService.ListarProdutosAsync();
+            regitro.Produtos = produtos;
             regitro.Data = DateOnly.FromDateTime(DateTime.Now);
             return View(regitro);
         }

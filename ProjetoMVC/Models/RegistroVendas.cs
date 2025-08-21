@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoMVC.Models
 {
-    public class RegistroVendas
+    public class RegistroVendas : BaseEntity
     {
-        public int Id { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateOnly Data { get; set; }
         public double Quantidade { get; set; }
         public StatusVenda Status { get; set; }
-        public int VendedorId { get; set; }
+        public long VendedorId { get; set; }
+        public List<Produto> Produtos { get; set; } 
 
         public RegistroVendas()
         {

@@ -150,7 +150,7 @@ namespace ProjetoMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DepartamentoExists(int id)
+        private bool DepartamentoExists(long id)
         {
             return _context.Departamento.Any(e => e.Id == id);
         }

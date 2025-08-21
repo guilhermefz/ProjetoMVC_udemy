@@ -2,9 +2,8 @@
 
 namespace ProjetoMVC.Models
 {
-    public class Vendedor
+    public class Vendedor : BaseEntity
     {
-        public int Id { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório")]
         [StringLength(60, MinimumLength = 3, ErrorMessage = "O nome deve ter entre 3 e 60 caracteres")]
@@ -24,7 +23,7 @@ namespace ProjetoMVC.Models
         public double? SalarioBase { get; set; }
         [Display(Name = "Departamento")]
         [Required(ErrorMessage = "Ta errado")]
-        public int DepartamentoId { get; set; }
+        public long DepartamentoId { get; set; }
         public Departamento Departamento { get; set; } 
         public ICollection<RegistroVendas> RegistroVendas { get; set; } = new List<RegistroVendas>();
 

@@ -1,8 +1,7 @@
 ﻿namespace ProjetoMVC.Models
 {
-    public class Departamento
+    public class Departamento : BaseEntity
     {
-        public int Id{ get; set; }
         public string Nome{ get; set; }
         public ICollection<Vendedor> Vendedores { get; set; } = new List<Vendedor>();
 

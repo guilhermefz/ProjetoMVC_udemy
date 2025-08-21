@@ -19,7 +19,7 @@ namespace ProjetoMVC.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Produto>> ListarProdutos()
+        public async Task<List<Produto>> ListarProdutosAsync()
         {
             return await _context.Produto.ToListAsync();
         }

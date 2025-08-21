@@ -15,7 +15,7 @@ namespace ProjetoMVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var lista = await _produtoService.ListarProdutos();
+            var lista = await _produtoService.ListarProdutosAsync();
             return View(lista);
         }
 

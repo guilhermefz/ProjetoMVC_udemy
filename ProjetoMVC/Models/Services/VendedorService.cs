@@ -23,12 +23,12 @@ namespace ProjetoMVC.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Vendedor> BuscarVendedorPorId(int id)
+        public async Task<Vendedor> BuscarVendedorPorId(long id)
         {
             return await _context.Vendedor.Include(obj => obj.Departamento).FirstOrDefaultAsync(v => v.Id == id);
         }
 
-        public async Task Excluir(int id)
+        public async Task Excluir(long id)
         {
             var vendedor = await BuscarVendedorPorId(id);
             _context.Vendedor.Remove(vendedor);

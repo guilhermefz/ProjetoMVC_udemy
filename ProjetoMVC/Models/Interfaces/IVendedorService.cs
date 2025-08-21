@@ -5,8 +5,8 @@
         Task<List<Vendedor>> ListarVendedoresAsync();
 
         Task CriarVendedores(Vendedor vendedor);
-        Task Excluir(int id);
-        Task<Vendedor> BuscarVendedorPorId(int id);
+        Task Excluir(long id);
+        Task<Vendedor> BuscarVendedorPorId(long id);
 
         void Atualizar(Vendedor obj);
     }

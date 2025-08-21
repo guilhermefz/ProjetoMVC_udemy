@@ -10,5 +10,6 @@ namespace ProjetoMVC.Models.Dtos
         public StatusVenda Status { get; set; }
         public int VendedorId { get; set; }
         public List<Vendedor> Vendedores { get; set; }
+        public List<Produto?> Produtos { get; set; }
     }
 }

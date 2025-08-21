@@ -1,8 +1,9 @@
-﻿namespace ProjetoMVC.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProjetoMVC.Models
 {
-    public class Produto
+    public class Produto : BaseEntity
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
         public double Preco { get; set; }
         public int QuantidadeEstoque { get; set; }
