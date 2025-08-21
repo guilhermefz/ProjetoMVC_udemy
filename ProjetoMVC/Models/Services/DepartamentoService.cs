@@ -21,7 +21,15 @@ namespace ProjetoMVC.Models.Services
         public async Task<Departamento> BuscarDepartamentoPorIdAsync(long id)
         {
             return await _context.Departamento.FirstOrDefaultAsync(c => c.Id == id);
-            
+
+        }
+
+        public async Task DeletarPorIdAsync(long id)
+        {
+            var departamento = await BuscarDepartamentoPorIdAsync(id);
+            _context.Departamento.Remove(departamento);
+            await _context.SaveChangesAsync();
+
         }
     }
 }

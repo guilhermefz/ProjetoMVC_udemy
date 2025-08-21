@@ -31,5 +31,12 @@ namespace ProjetoMVC.Controllers
             await _produtoService.CriarProduto(produto);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(long id)
+        {
+            await _produtoService.DeletarProdutoPOrId(id);
+            return RedirectToAction("Index");
+        }
     }
 }

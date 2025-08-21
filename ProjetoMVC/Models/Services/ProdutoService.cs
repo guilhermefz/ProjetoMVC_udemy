@@ -23,5 +23,17 @@ namespace ProjetoMVC.Models.Services
         {
             return await _context.Produto.ToListAsync();
         }
+
+        public async Task<Produto> BuscarProdutoPorId(long id)
+        {
+            var produto = await _context.Produto.FirstOrDefaultAsync(c => c.Id ==id);
+            return produto;
+        }
+        public async Task DeletarProdutoPOrId(long id)
+        {
+            var produto = await BuscarProdutoPorId(id);
+            _context.Remove(produto);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -29,5 +29,18 @@ namespace ProjetoMVC.Models.Services
         {
             return await _context.RegistroVendas.ToListAsync();
         }
+
+        public async Task<RegistroVendas> BuscarRegistroPoridAsync(long id)
+        {
+            var registro = await _context.RegistroVendas.FirstOrDefaultAsync(c => c.Id == id);
+            return registro;
+        }
+
+        public async Task DeletarRegistroPorIdAsync(long id)
+        {
+            var registro = await BuscarRegistroPoridAsync(id);
+            _context.Remove(registro);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -47,5 +47,12 @@ namespace ProjetoMVC.Controllers
             _registroVendasService.CriarRegistro(registroMapper);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(long id)
+        {
+            await _registroVendasService.DeletarRegistroPorIdAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
