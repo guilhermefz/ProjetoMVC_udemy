@@ -1,4 +1,5 @@
-﻿using ProjetoMVC.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Data;
 using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Models.Services
@@ -16,6 +17,11 @@ namespace ProjetoMVC.Models.Services
         {
             _context.Add(produto);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Produto>> ListarProdutos()
+        {
+            return await _context.Produto.ToListAsync();
         }
     }
 }

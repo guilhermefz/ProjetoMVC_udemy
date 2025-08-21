@@ -13,13 +13,14 @@ namespace ProjetoMVC.Controllers
             _produtoService = produtoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var lista = await _produtoService.ListarProdutos();
+            return View(lista);
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
