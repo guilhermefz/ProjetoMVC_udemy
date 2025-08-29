@@ -1,6 +1,4 @@
-﻿using ProjetoMVC.Models.Dtos;
-
-namespace ProjetoMVC.Models.Interfaces
+﻿namespace ProjetoMVC.Models.Interfaces
 {
     public interface IRegistroVendasService
     {

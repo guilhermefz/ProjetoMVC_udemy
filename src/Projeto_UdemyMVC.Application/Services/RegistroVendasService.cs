@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Data;
-using ProjetoMVC.Models.Dtos;
 using ProjetoMVC.Models.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProjetoMVC.Models.Services
 {
