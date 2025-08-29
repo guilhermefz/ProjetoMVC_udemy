@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select class="form-select" asp-for="Status" asp-items="@(new SelectList(Enum.GetValues(typeof(ProjetoMVC.Models.Enuns.StatusVenda))))" class="form-control">
-                    <option value="">-- Select Status --</option>"
+                    <option value="">-- Select Status --</option>
                 </select>
             </div>
             <div class="form-group">
@@ -38,97 +38,33 @@
             </div>
             <hr />
             <h4>Itens da Venda</h4>
-
-            @* 1. Este é o container onde o JavaScript irá inserir os campos de produto e quantidade *@
             <div id="itens-container">
-            </div>
+                <div class="form-group">
+                    <label asp-for="ProdutoId" class="control-label"></label>
+                    <select class="form-select" asp-for="ProdutoId" asp-items="@(new SelectList(Model.Produtos, "Id", "Nome"))" class="form-control">
+                        <option value="">-- Select Produto --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantidade" class="control-label"></label>
+                    <input asp-for="Quantidade" class="form-control" />
+                </div>
 
-            @* 2. Este é o botão que o usuário irá clicar. Note o type="button" e o id *@
-            <div class="form-group mt-2">
-                <button type="button" id="btn-adicionar-item" class="btn btn-secondary">Adicionar Produto</button>
-            </div>
+                @* 2. Este é o botão que o usuário irá clicar. Note o type="button" e o id *@
+                <div class="form-group mt-2">
+                    <button type="button" id="btn-adicionar-item" class="btn btn-secondary">Adicionar Produto</button>
+                </div>
 
-            <hr />
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
-            </div>
+                <hr />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
         </form>
 
-    </div>
-
-    <div>
-        <img id="imagens" src="/img/pos-venda.png" alt="Pós-venda" />
     </div>
 </div>
 
 @section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+    <script></script>
 
-            // Pega o botão e o container do HTML pelos seus IDs (Correto)
-            const btnAdicionar = document.getElementById('btn-adicionar-item');
-            const container = document.getElementById('itens-container');
-
-            // Transforma a lista de produtos do C# em um objeto JSON (Correto)
-            const produtos = @Json.Serialize(Model.Produtos.Select(p => new { p.Id, p.Nome }));
-
-            function criarOpcoesProduto() {
-                let opcoesHtml = '<option value="">-- Select Product --</option>';
-                produtos.forEach(produto => {
-                    opcoesHtml += `<option value="${produto.id}">${produto.nome}</option>`;
-                });
-                return opcoesHtml;
-            }
-
-            // Lógica para Adicionar (Correto)
-            btnAdicionar.addEventListener('click', function () {
-                const index = container.getElementsByClassName('item-group').length;
-                const novoItemGroup = document.createElement('div');
-                novoItemGroup.classList.add('item-group', 'row', 'mb-2');
-                novoItemGroup.innerHTML = `
-                    <div class="col-md-7">
-                        <label class="control-label">Produto</label>
-                        <select name="Itens[${index}].ProdutoId" class="form-select">
-                            ${criarOpcoesProduto()}
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label">Quantidade</label>
-                        <input type="number" name="Itens[${index}].Quantidade" class="form-control" />
-                    </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="button" class="btn btn-danger btn-remover">X</button>
-                    </div>
-                `;
-                container.appendChild(novoItemGroup);
-            });
-
-            // CORREÇÃO 1: A lógica de remover e a função de reindexar devem estar DENTRO do 'DOMContentLoaded'.
-
-            // Lógica para o botão de remover
-            container.addEventListener('click', function(e) {
-                if (e.target && e.target.classList.contains('btn-remover')) {
-                    e.target.closest('.item-group').remove();
-                    reindexarItens();
-                }
-            });
-
-            function reindexarItens() {
-                const itemGroups = container.getElementsByClassName('item-group');
-                for (let i = 0; i < itemGroups.length; i++) {
-                    const group = itemGroups[i];
-                    const selectProduto = group.querySelector('select');
-                    const inputQuantidade = group.querySelector('input');
-
-                    selectProduto.name = `Itens[${i}].ProdutoId`;
-                    inputQuantidade.name = `Itens[${i}].Quantidade`;
-                }
-            }
-
-            // CORREÇÃO 2: A chamada inicial deve ser a ÚLTIMA coisa dentro do 'DOMContentLoaded',
-            // para ser executada apenas UMA VEZ quando a página carregar.
-            btnAdicionar.click();
-
-        }); // <-- Fim do 'DOMContentLoaded'
-    </script>
 }

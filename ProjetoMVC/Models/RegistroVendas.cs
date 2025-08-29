@@ -10,7 +10,7 @@ namespace ProjetoMVC.Models
         public double Quantidade { get; set; }
         public StatusVenda Status { get; set; }
         public long VendedorId { get; set; }
-        public List<Produto> Produtos { get; set; } 
+        public long PedidoItensId { get; set; }
 
         public RegistroVendas()
         {
@@ -19,6 +19,13 @@ namespace ProjetoMVC.Models
         public RegistroVendas(long id, DateOnly data, double quantidade, StatusVenda status, long vendedor)
         {
             Id = id;
+            Data = data;
+            Quantidade = quantidade;
+            Status = status;
+            VendedorId = vendedor;
+        }
+        public RegistroVendas( DateOnly data, double quantidade, StatusVenda status, long vendedor)
+        {
             Data = data;
             Quantidade = quantidade;
             Status = status;

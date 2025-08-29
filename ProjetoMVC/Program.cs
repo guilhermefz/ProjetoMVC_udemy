@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjetoMVC.Data;
 using ProjetoMVC.Models.Interfaces;
 using ProjetoMVC.Models.Services;
-using AutoMapper;
 using ProjetoMVC.Controllers;
 using ProjetoMVC.Mappers;
 namespace ProjetoMVC
@@ -21,7 +20,6 @@ namespace ProjetoMVC
             builder.Services.AddScoped<IRegistroVendasService, RegistroVendasService>();
             builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
-            builder.Services.AddAutoMapper(typeof(Program));
 
             var connectionString = builder.Configuration.GetConnectionString("ProjetoMVCContext");
             builder.Services.AddDbContext<ProjetoMVCContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));

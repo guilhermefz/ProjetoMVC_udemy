@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ProjetoMVC.Models
+﻿namespace ProjetoMVC.Models
 {
     public class Produto : BaseEntity
     {

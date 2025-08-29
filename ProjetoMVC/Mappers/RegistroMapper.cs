@@ -1,14 +1,19 @@
-﻿using AutoMapper;
-using ProjetoMVC.Models;
+﻿using ProjetoMVC.Models;
 using ProjetoMVC.Models.Dtos;
 
 namespace ProjetoMVC.Mappers
 {
-    public class RegistroMapper : Profile
+    public static class RegistroMapper
     {
-        public RegistroMapper()
+        public static RegistroVendas MapToRegistro(this RegistroVendasDto request)
         {
-            CreateMap<RegistroVendas, RegistroVendasDto>().ReverseMap();
+            return new RegistroVendas
+            {
+                Data = request.Data,
+                Quantidade = request.Quantidade,
+                Status = request.Status,
+                VendedorId = request.VendedorId
+            };
         }
     }
 }

@@ -9,8 +9,11 @@ namespace ProjetoMVC.Models.Dtos
         public double Quantidade { get; set; }
         public StatusVenda Status { get; set; }
         public long VendedorId { get; set; }
+        public long ProdutoId { get; set; }
+        public long ItensPedidoId { get; set; }
         public List<Vendedor> Vendedores { get; set; }
         public List<Produto> Produtos { get; set; }
         public List<ItemVendaDto> Itens { get; set; }
+
     }
-}
+    }
