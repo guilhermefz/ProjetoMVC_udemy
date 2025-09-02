@@ -20,10 +20,10 @@
             Vendedores.Add(vendedor);
         }
 
-        public double TotalVendas(DateOnly inicio, DateOnly fim)
-        {
-            return Vendedores.Sum(v => v.TotalVendas(inicio, fim));
-        }
+        //public double TotalVendas(DateOnly inicio, DateOnly fim)
+        //{
+        //    return Vendedores.Sum(v => v.TotalVendas(inicio, fim));
+        //}
 
     }
 }

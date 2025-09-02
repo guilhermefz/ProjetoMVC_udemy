@@ -1,4 +1,5 @@
-﻿@model IEnumerable<RegistroVendas>
+﻿@using ProjetoMVC.Models.ViewModels
+@model IEnumerable<RegistroVendasViewModel>
 
 
 @{
@@ -24,6 +25,10 @@
         <th>
             @Html.DisplayNameFor(model => model.VendedorId)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PedidoId)
+        </th>
+        <th>Actions</th>
         </thead>
 
     <tbody>
@@ -35,6 +40,7 @@
                     <td>@Html.DisplayFor(model => item.Status)</td>
                     <td>@Html.DisplayFor(model => item.Quantidade)</td>
                     <td>@Html.DisplayFor(model => item.VendedorId)</td>
+                    <td>@Html.DisplayFor(model => item.PedidoId)</td>
                     <td>
                         <form asp-action="Delete" asp-route-id="@item.Id" method="post"
                               onsubmit="return confirm('Tem certeza que deseja excluir?')">

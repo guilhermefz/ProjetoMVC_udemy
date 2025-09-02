@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Projeto_UdemyMVC.Application.Interfaces;
+using Projeto_UdemyMVC.Infra.InterfacesRepositories;
 using ProjetoMVC.Data;
-using ProjetoMVC.Models.Interfaces;
+using ProjetoMVC.Mappers;
+using ProjetoMVC.Models.Dtos;
 
 namespace ProjetoMVC.Models.Services
 {
@@ -8,23 +11,28 @@ namespace ProjetoMVC.Models.Services
     {
         private readonly ProjetoMVCContext _context;
         private readonly IVendedorService _vendedorService;
+        private readonly IRegistroVendasRepository _registroVendasRepository;
 
-        public RegistroVendasService(ProjetoMVCContext context, IVendedorService vendedorService)
+        public RegistroVendasService(ProjetoMVCContext context, IVendedorService vendedorService, IRegistroVendasRepository registroVendasRepository)
         {
             _context = context;
             _vendedorService = vendedorService;
+            _registroVendasRepository = registroVendasRepository;
         }
 
         
-        public async Task CriarRegistro (RegistroVendas registroVendas)
+        public async Task CriarRegistro(RegistroVendasDto registroVendas)
         {
-            _context.Add(registroVendas);
-            _context.SaveChanges();
+            var registroItem = registroVendas.MapToItens();
+            var registroVenda = registroVendas.MapToRegistro();
+            await _registroVendasRepository.CriarRegistroVendaAsync(registroVenda);
+            await _registroVendasRepository.CriarPedidoItensAsync(registroItem);
         }
 
         public async  Task<List<RegistroVendas>> BuscarRegistros()
         {
-            return await _context.RegistroVendas.ToListAsync();
+            var lista = await _registroVendasRepository.ListarAsync();
+            return lista;
         }
 
         public async Task<RegistroVendas> BuscarRegistroPoridAsync(long id)

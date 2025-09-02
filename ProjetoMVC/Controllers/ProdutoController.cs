@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Projeto_UdemyMVC.Application.Interfaces;
 using ProjetoMVC.Models;
-using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Controllers
 {

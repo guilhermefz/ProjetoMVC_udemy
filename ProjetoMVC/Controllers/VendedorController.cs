@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Projeto_UdemyMVC.Application.Interfaces;
 using ProjetoMVC.Models;
 using ProjetoMVC.Models.Dtos;
-using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Controllers
 {

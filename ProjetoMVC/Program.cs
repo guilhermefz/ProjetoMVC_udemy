@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoMVC.Data;
-using ProjetoMVC.Models.Interfaces;
 using ProjetoMVC.Models.Services;
 using ProjetoMVC.Controllers;
 using ProjetoMVC.Mappers;
+using ProjetoMVC.Models;
+using Projeto_UdemyMVC.Application.Interfaces;
+using Projeto_UdemyMVC.Data.Repositories;
+using Projeto_UdemyMVC.Infra.InterfacesRepositories;
 namespace ProjetoMVC
 {
     public class Program
@@ -19,6 +22,7 @@ namespace ProjetoMVC
             builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
             builder.Services.AddScoped<IRegistroVendasService, RegistroVendasService>();
             builder.Services.AddScoped<IProdutoService, ProdutoService>();
+            builder.Services.AddScoped<IRegistroVendasRepository, RegistroVendasRepository>();
 
 
             var connectionString = builder.Configuration.GetConnectionString("ProjetoMVCContext");

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjetoMVC.Mappers;
-using ProjetoMVC.Models;
+using Projeto_UdemyMVC.Application.Interfaces;
+using ProjetoMVC.MappersView;
 using ProjetoMVC.Models.Dtos;
-using ProjetoMVC.Models.Interfaces;
+using ProjetoMVC.Models.ViewModels;
+using System.Threading.Tasks;
 
 namespace ProjetoMVC.Controllers
 {
@@ -23,13 +24,15 @@ namespace ProjetoMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var listaDeVendas = await _registroVendasService.BuscarRegistros();
-            return View(listaDeVendas);
+            var listView = new List<RegistroVendasViewModel>();
+            listView = listaDeVendas.MapToView();
+            return View(listView);
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var regitro = new RegistroVendasDto();
+            var regitro = new RegistroVendasViewModel();
             var vendedores = await _vendedorService.ListarVendedoresAsync();
             regitro.Vendedores = vendedores;
             var produtos = await _produtoService.ListarProdutosAsync();
@@ -39,11 +42,14 @@ namespace ProjetoMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(RegistroVendasDto registro)
+        public async Task<IActionResult> Create(RegistroVendasDto registro)
         {
-            var registroMapper = registro.MapToRegistro();
-            _registroVendasService.CriarRegistro(registroMapper);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                await _registroVendasService.CriarRegistro(registro);
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Create));
         }
 
         [HttpPost]

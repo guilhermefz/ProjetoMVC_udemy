@@ -10,10 +10,24 @@ namespace ProjetoMVC.Mappers
             return new RegistroVendas
             {
                 Data = request.Data,
-                Quantidade = request.Quantidade,
                 Status = request.Status,
-                VendedorId = request.VendedorId
+                VendedorId = request.VendedorId,
+                Quantidade = request.Quantidade
             };
         }
+
+        public static RegistroVendasItens MapToItens(this RegistroVendasDto request)
+        {
+            return new RegistroVendasItens
+            {
+                ProdutoId = request.ProdutoId,
+                Quantidade = request.Quantidade,
+                RegistroVendaId = request.RegistroVendaId,
+            };
+        }
+
+        
+
+
     }
 }

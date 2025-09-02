@@ -7,29 +7,29 @@ namespace ProjetoMVC.Models
     {
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateOnly Data { get; set; }
-        public double Quantidade { get; set; }
         public StatusVenda Status { get; set; }
         public long VendedorId { get; set; }
         public long PedidoItensId { get; set; }
+        public double Quantidade { get; set; }
 
         public RegistroVendas()
         {
         }
 
-        public RegistroVendas(long id, DateOnly data, double quantidade, StatusVenda status, long vendedor)
+        public RegistroVendas(long id, DateOnly data, StatusVenda status, long vendedor, double quantidade)
         {
             Id = id;
             Data = data;
-            Quantidade = quantidade;
             Status = status;
             VendedorId = vendedor;
+            Quantidade = quantidade;
         }
-        public RegistroVendas( DateOnly data, double quantidade, StatusVenda status, long vendedor)
+        public RegistroVendas( DateOnly data, StatusVenda status, long vendedor, double quantidade)
         {
             Data = data;
-            Quantidade = quantidade;
             Status = status;
             VendedorId = vendedor;
+            Quantidade = quantidade;
         }
     }
 }

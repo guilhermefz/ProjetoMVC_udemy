@@ -1,4 +1,6 @@
-﻿namespace ProjetoMVC.Models.Interfaces
+﻿using ProjetoMVC.Models;
+
+namespace Projeto_UdemyMVC.Application.Interfaces
 {
     public interface IProdutoService
     {

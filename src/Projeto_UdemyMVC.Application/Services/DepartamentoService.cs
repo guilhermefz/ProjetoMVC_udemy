@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Projeto_UdemyMVC.Application.Interfaces;
 using ProjetoMVC.Data;
-using ProjetoMVC.Models.Interfaces;
 
 namespace ProjetoMVC.Models.Services
 {
