@@ -12,8 +12,8 @@ using ProjetoMVC.Data;
 namespace ProjetoMVC.Migrations
 {
     [DbContext(typeof(ProjetoMVCContext))]
-    [Migration("20250902200959_teste")]
-    partial class teste
+    [Migration("20250903144700_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,7 +166,7 @@ namespace ProjetoMVC.Migrations
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendasItens", b =>
                 {
                     b.HasOne("ProjetoMVC.Models.RegistroVendas", "RegistroVendas")
-                        .WithMany("RegistroVendasItens")
+                        .WithMany("RegistroPedidoItens")
                         .HasForeignKey("RegistroVendasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -192,7 +192,7 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendas", b =>
                 {
-                    b.Navigation("RegistroVendasItens");
+                    b.Navigation("RegistroPedidoItens");
                 });
 
             modelBuilder.Entity("ProjetoMVC.Models.Vendedor", b =>

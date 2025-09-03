@@ -5,7 +5,7 @@
 namespace ProjetoMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class teste : Migration
+    public partial class adding_foreign_key : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

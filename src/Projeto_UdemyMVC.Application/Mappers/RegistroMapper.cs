@@ -1,5 +1,6 @@
 ﻿using ProjetoMVC.Models;
 using ProjetoMVC.Models.Dtos;
+using ProjetoMVC.Models.Enuns;
 
 namespace ProjetoMVC.Mappers
 {
@@ -13,6 +14,8 @@ namespace ProjetoMVC.Mappers
                 Status = request.Status,
                 VendedorId = request.VendedorId,
                 Quantidade = request.Quantidade,
+                PedidoItensId = request.PedidoItensId,
+                RegistroPedidoItens = request.Itens,
             };
         }
 
@@ -25,9 +28,6 @@ namespace ProjetoMVC.Mappers
                 RegistroVendasId = request.RegistroVendaId,
             };
         }
-
-        
-
 
     }
 }

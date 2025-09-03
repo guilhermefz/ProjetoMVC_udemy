@@ -11,7 +11,7 @@ namespace ProjetoMVC.Models
         public long VendedorId { get; set; }
         public long PedidoItensId { get; set; }
         public double Quantidade { get; set; }
-        public ICollection<RegistroVendasItens>? RegistroVendasItens { get; set; }
+        public ICollection<RegistroVendasItens>? RegistroPedidoItens { get; set; }
 
         public RegistroVendas()
         {

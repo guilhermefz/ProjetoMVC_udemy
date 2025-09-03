@@ -4,22 +4,21 @@
 @{
     ViewData["Title"] = "Create";
 }
-<h2>
-    @ViewData["Title"]
-</h2>
 
 
 <style>
-    #imagens {
-        width: 400px;
-        height: auto;
-        margin: 30px 15px 700px 450px
+    #itens-container {
+        color : black;
     }
 
+
+
 </style>
-<div class="row">
-    <div class="col-4">
-        <form asp-action="Create">
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+    <h4 class="align-center">Criação</h4>
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
                 <input asp-for="Data" class="form-control" />
@@ -36,33 +35,64 @@
                     <option value="">-- Select Vendedor --</option>
                 </select>
             </div>
-            <hr />
-            <h4>Itens da Venda</h4>
+            <div class="form-group mt-2">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+
+
+
+        <div class="col-md-6">
             <div id="itens-container">
+            <h4 class="align-center">Itens do Pedido</h4>
                 <div class="form-group">
-                    <label asp-for="ProdutoId" class="control-label"></label>
-                    <select class="form-select" asp-for="ProdutoId" asp-items="@(new SelectList(Model.Produtos, "Id", "Nome"))" class="form-control">
+                    <label asp-for="RegistroVendasItens" class="control-label"></label>
+                    <select id="itemProduto" class="form-select" asp-for="ProdutoId" asp-items="@(new SelectList(Model.Produtos, "Id", "Nome"))" class="form-control">
                         <option value="">-- Select Produto --</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Quantidade" class="control-label"></label>
-                    <input asp-for="Quantidade" class="form-control" />
+                    <label class="control-label">Quantidade</label>
+                    <input id="itemQuantidade" type="number" class="form-control" />
                 </div>
 
-                @* 2. Este é o botão que o usuário irá clicar. Note o type="button" e o id *@
+
+                <div class="form-group col-md-3">
+                    <label class="control-label">Valor</label>
+                    <input id="itemValor" type="text" class="form-control" />
+                </div>
                 <div class="form-group mt-2">
-                    <button type="button" id="btn-adicionar-item" class="btn btn-secondary">Adicionar Produto</button>
+                    <button type="button" id="btn-adicionar-item" class="btn btn-dark">Adicionar Produto</button>
                 </div>
+                <hr/>
 
-                <hr />
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-success" />
-                </div>
-        </form>
+                <h4>Lista de produtos criados</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Valor Unitário</th>
+                            <th>Subtotal</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
 
     </div>
+    </div>
+</form>
+
+
 </div>
+<hr />
+
+    <tbody id="tabelaItens">
+        @* As linhas dos itens serão adicionadas aqui via JavaScript *@
+    </tbody>
+
 
 @section Scripts {
     <script></script>
