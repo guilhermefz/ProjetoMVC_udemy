@@ -12,7 +12,7 @@ namespace ProjetoMVC.Mappers
                 Data = request.Data,
                 Status = request.Status,
                 VendedorId = request.VendedorId,
-                Quantidade = request.Quantidade
+                Quantidade = request.Quantidade,
             };
         }
 
@@ -22,7 +22,7 @@ namespace ProjetoMVC.Mappers
             {
                 ProdutoId = request.ProdutoId,
                 Quantidade = request.Quantidade,
-                RegistroVendaId = request.RegistroVendaId,
+                RegistroVendasId = request.RegistroVendaId,
             };
         }
 

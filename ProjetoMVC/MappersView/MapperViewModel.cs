@@ -13,7 +13,8 @@ namespace ProjetoMVC.MappersView
                 Data = request.Data,
                 Status = request.Status,
                 VendedorId = request.VendedorId,
-                Quantidade = request.Quantidade
+                Quantidade = request.Quantidade,
+                PedidoId = request.PedidoItensId,
             }).ToList();
         }
     }
