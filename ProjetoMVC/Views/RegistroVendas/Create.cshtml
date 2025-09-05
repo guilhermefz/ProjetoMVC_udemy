@@ -1,4 +1,5 @@
 ﻿@using ProjetoMVC.Models.ViewModels
+@using System.Globalization;
 @model RegistroVendasViewModel
 
 @{
@@ -62,7 +63,7 @@
                     <input id="itemValor" type="text" class="form-control" />
                 </div>
                 <div class="form-group mt-2">
-                    <button type="button" id="btn-adicionar-item" class="btn btn-dark">Adicionar Produto</button>
+                    <button type="button" id="btnAdicionarItem" class="btn btn-dark">Adicionar Produto</button>
                 </div>
                 <hr/>
 
@@ -77,6 +78,9 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    <tbody id="tabelaItens">
+
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -93,6 +97,13 @@
 
 
 @section Scripts {
+
+        const produtosDisponiveis = [
+        @foreach (var produto in Model.Produtos)
+    {
+        @: {id: '@produto.Id', nome: '@produto.Nome', valor: @produto.Preco.ToString(CultureInfo.InvariantCulture)}
+    }
+    ];
     <script src="~/js/registroVendas.js"></script>
 
 }

@@ -16,6 +16,7 @@ namespace ProjetoMVC.Models.ViewModels
         public long PedidoId { get; set; }
         public List<Vendedor> Vendedores { get; set; }
         public List<Produto> Produtos { get; set; }
+        [DisplayName("Produtos")]
         public ICollection<RegistroVendasItens>? RegistroVendasItens { get; set; }
 
     }
