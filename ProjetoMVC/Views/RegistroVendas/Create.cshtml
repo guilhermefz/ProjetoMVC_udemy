@@ -1,4 +1,5 @@
 ﻿@using ProjetoMVC.Models.ViewModels
+@using System.Globalization;
 @model RegistroVendasViewModel
 
 @{
@@ -59,10 +60,10 @@
 
                 <div class="form-group col-md-3">
                     <label class="control-label">Valor</label>
-                    <input id="itemValor" type="text" class="form-control" />
+                    <label id="itemValor" class="form-control">R$ 0,00</label>
                 </div>
                 <div class="form-group mt-2">
-                    <button type="button" id="btn-adicionar-item" class="btn btn-dark">Adicionar Produto</button>
+                    <button type="button" id="btnAdicionarItem" class="btn btn-dark">Adicionar Produto</button>
                 </div>
                 <hr/>
 
@@ -77,6 +78,9 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    <tbody id="tabelaItens">
+
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -93,6 +97,8 @@
 
 
 @section Scripts {
+    <script> var produtosDisponiveis = @Html.Raw(Json.Serialize(Model.Produtos));</script>
+        
     <script src="~/js/registroVendas.js"></script>
 
 }
