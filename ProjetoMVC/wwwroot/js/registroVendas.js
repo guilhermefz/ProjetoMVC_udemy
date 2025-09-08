@@ -48,7 +48,6 @@
 
     if (btnAdicionarItem) {
         btnAdicionarItem.addEventListener('click', (event) => {
-            console.log("O botão foi clicado!");
             const dadosDoItem = getDadosDoItem();
 
             if (!dadosDoItem) {
@@ -63,6 +62,8 @@
                 const valorUnitario = produtoEncontrado.preco;
                 const subtotal = valorUnitario * dadosDoItem.quantidade;
                 const novaLinha = document.createElement('tr');
+                novaLinha.dataset.produtoId = produtoEncontrado.id; 
+
                 novaLinha.innerHTML = `
                     <td>${produtoNome}</td>
                     <td>${dadosDoItem.quantidade}</td>
@@ -76,16 +77,66 @@
                 selectProduto.value = '';
                 inputQuantidade.value = '';
                 labelValor.innerText = 'R$ 0,00';
-            } else
+            } else {
                 alert("Produto não encontrado.");
-
-            if (tabelaItens) {
-                tabelaItens.addEventListener('click', (event) => {
-                    console.log("Algo foi clicado na tabela!");
-                });
             }
-
-
         });
     }
+            if (tabelaItens) {
+                tabelaItens.addEventListener('click', (event) => {
+                    const elementoClicado = event.target;
+                    if (elementoClicado.classList.contains('btn-danger')) {
+                        const linhaParaRemover = elementoClicado.closest('tr');
+                        if (linhaParaRemover) {
+                            linhaParaRemover.remove();
+                            console.log('removido!');
+                        }
+                    }
+                });
+            }
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const linhasDaTabela = tabelaItens.querySelectorAll('tbody tr');
+            const itensDaVenda = [];
+
+            linhasDaTabela.forEach(linha => {
+                const produtoId = linha.dataset.produtoId; 
+                const nomeDoProduto = linha.cells[0].innerText;
+                const quantidade = linha.cells[1].innerText;
+
+                const item = {
+                    produtoId: parseInt(produtoId, 10), 
+                    quantidade: parseFloat(quantidade)  
+                };
+                itensDaVenda.push(item);
+            });
+            const vendedorId = document.getElementById('VendedorId').value;
+            const dataDaVenda = document.getElementById('Data').value;
+
+            const dadosDaVenda = {
+                vendedorId: parseInt(vendedorId, 10),
+                data: dataDaVenda,
+                itens: itensDaVenda
+            };
+
+            console.log("Pacote de dados completo:", dadosDaVenda);
+
+            fetch('/RegistroVendas/SalvarVenda', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dadosDaVenda)
+            })
+            if (itensDaVenda.length === 0) {
+                alert("Por favor, adicione pelo menos um item à venda.");
+                return;
+            }
+            // Próximos passos: pegar dados do vendedor/data e enviar via AJAX.
+        });
+    }
+
+
 });

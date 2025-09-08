@@ -1,4 +1,5 @@
-﻿using ProjetoMVC.Models.Enuns;
+﻿using Projeto_UdemyMVC.Application.Dtos;
+using ProjetoMVC.Models.Enuns;
 using System.ComponentModel;
 
 namespace ProjetoMVC.Models.ViewModels
@@ -18,6 +19,7 @@ namespace ProjetoMVC.Models.ViewModels
         public List<Produto> Produtos { get; set; }
         [DisplayName("Produtos")]
         public ICollection<RegistroVendasItens>? RegistroVendasItens { get; set; }
+        public List<ItensDto>? Itens { get; set; }
 
     }
     }

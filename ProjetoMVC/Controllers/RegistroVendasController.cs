@@ -58,5 +58,16 @@ namespace ProjetoMVC.Controllers
             await _registroVendasService.DeletarRegistroPorIdAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SalvarVenda([FromBody] RegistroVendasDto registro)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(new { mensagem = "Dados recebidos com sucesso pelo servidor!" });
+            }
+
+            return BadRequest(new { mensagem = "Ocorreu um problema com os dados enviados." });
+        }
     }
 }
