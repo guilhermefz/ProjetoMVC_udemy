@@ -4,6 +4,24 @@
     const inputQuantidade = document.getElementById('itemQuantidade');
     const labelValor = document.getElementById('itemValor');
     const btnAdicionarItem = document.getElementById('btnAdicionarItem');
+    const successModal = document.getElementById('successModal');
+    const modalMessageElement = document.getElementById('modalMessage');
+    const modalButton = document.getElementById('modalButton')
+
+    const showSuccessModal = (message) => {
+        modalMessageElement.innerText = message; // Atualiza o texto da mensagem
+        successModal.style.display = 'flex';   // Mostra o modal
+    };
+    if (modalButton) {
+        modalButton.addEventListener('click', () => {
+            setTimeout(() => {
+                window.location.href = '/RegistroVendas';
+            }, 1000);
+        });
+    }
+    console.log("Elemento do parágrafo da mensagem:", modalMessage);
+    
+
     console.log("Elemento do botão:", btnAdicionarItem);
 
     const tabelaItens = document.getElementById('tabelaItens');
@@ -125,13 +143,19 @@
 
             console.log("Pacote de dados completo:", dadosDaVenda);
 
+            
             fetch('/RegistroVendas/SalvarVenda', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(dadosDaVenda)
+            }).then(response => response.json())
+                .then(data => {
+                console.log("Objeto 'data' recebido do servidor:", data);
+                    showSuccessModal(data.mensagem); 
             })
+
             if (itensDaVenda.length === 0) {
                 alert("Por favor, adicione pelo menos um item à venda.");
                 return;
