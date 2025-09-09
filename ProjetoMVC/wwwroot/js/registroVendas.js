@@ -2,21 +2,20 @@
 
     const selectProduto = document.getElementById('itemProduto');
     const inputQuantidade = document.getElementById('itemQuantidade');
-    const labelValor = document.getElementById('itemValor');
     const btnAdicionarItem = document.getElementById('btnAdicionarItem');
     const successModal = document.getElementById('successModal');
     const modalMessageElement = document.getElementById('modalMessage');
     const modalButton = document.getElementById('modalButton')
 
     const showSuccessModal = (message) => {
-        modalMessageElement.innerText = message; // Atualiza o texto da mensagem
-        successModal.style.display = 'flex';   // Mostra o modal
+        modalMessageElement.innerText = message; 
+        successModal.style.display = 'flex';  
     };
     if (modalButton) {
         modalButton.addEventListener('click', () => {
             setTimeout(() => {
                 window.location.href = '/RegistroVendas';
-            }, 1000);
+            }, 500);
         });
     }
     console.log("Elemento do parágrafo da mensagem:", modalMessage);
@@ -40,29 +39,6 @@
             quantidade
         };
     };
-
-    const calcularTotal = () => {
-        const dadosDoItem = getDadosDoItem();
-
-        if (!dadosDoItem) {
-            labelValor.innerText = 'R$ 0,00';
-            return;
-        }
-
-        const produtoEncontrado = produtosDisponiveis.find(p => p.id === dadosDoItem.produtoId);
-
-        if (produtoEncontrado) {
-            const total = produtoEncontrado.preco * dadosDoItem.quantidade;
-            labelValor.innerText = 'R$ ' + total.toFixed(2).replace('.', ',');
-        } else {
-            labelValor.innerText = 'R$ 0,00';
-        }
-    };
-
-    if (selectProduto && inputQuantidade) {
-        selectProduto.addEventListener('change', calcularTotal);
-        inputQuantidade.addEventListener('input', calcularTotal);
-    }
 
     if (btnAdicionarItem) {
         btnAdicionarItem.addEventListener('click', (event) => {
@@ -94,7 +70,6 @@
 
                 selectProduto.value = '';
                 inputQuantidade.value = '';
-                labelValor.innerText = 'R$ 0,00';
             } else {
                 alert("Produto não encontrado.");
             }

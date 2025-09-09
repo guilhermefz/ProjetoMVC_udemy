@@ -6,45 +6,9 @@
     ViewData["Title"] = "Create";
 }
 
-
-<style>
-    #itens-container {
-        color : black;
-    }
-
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .success-modal-content {
-        background: black;
-        padding: 25px;
-        border-radius: 10px;
-        text-align: center;
-        width: 300px; 
-    }
-
-    .modal-button {
-        background: #007bff; 
-        color: white; 
-        border: none;
-        padding: 10px;
-        width: 100%;
-        border-radius: 5px;
-        margin-top: 20px;
-        cursor: pointer;
-    }
-
-</style>
-
+<head>
+    <link rel="stylesheet" href="~/css/registroVendas.css"/>
+</head>
 <form asp-action="Create">
     <div class="row">
         <div class="col-md-6">
@@ -84,12 +48,6 @@
                 <div class="form-group">
                     <label class="control-label">Quantidade</label>
                     <input id="itemQuantidade" type="number" class="form-control" />
-                </div>
-
-
-                <div class="form-group col-md-3">
-                    <label class="control-label">Valor</label>
-                    <label id="itemValor" class="form-control">R$ 0,00</label>
                 </div>
                 <div class="form-group mt-2">
                     <button type="button" id="btnAdicionarItem" class="btn btn-dark">Adicionar Produto</button>
