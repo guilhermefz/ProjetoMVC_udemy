@@ -113,11 +113,13 @@
                 itensDaVenda.push(item);
             });
             const vendedorId = document.getElementById('VendedorId').value;
-            const dataDaVenda = document.getElementById('Data').value;
+            const dataOriginal = document.getElementById('Data').value;
+            const partesDaData = dataOriginal.split('/'); 
+            const dataFormatada = `${partesDaData[2]}-${partesDaData[1]}-${partesDaData[0]}`;
 
             const dadosDaVenda = {
                 vendedorId: parseInt(vendedorId, 10),
-                data: dataDaVenda,
+                data: dataFormatada,
                 itens: itensDaVenda
             };
 
@@ -134,7 +136,7 @@
                 alert("Por favor, adicione pelo menos um item à venda.");
                 return;
             }
-            // Próximos passos: pegar dados do vendedor/data e enviar via AJAX.
+            
         });
     }
 

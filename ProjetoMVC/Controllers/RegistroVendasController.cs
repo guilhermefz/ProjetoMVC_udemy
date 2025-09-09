@@ -64,7 +64,8 @@ namespace ProjetoMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(new { mensagem = "Dados recebidos com sucesso pelo servidor!" });
+                await _registroVendasService.CriarRegistro(registro);
+                return Ok(new { mensagem = "Venda registrada com sucesso no banco de dados!" });
             }
 
             return BadRequest(new { mensagem = "Ocorreu um problema com os dados enviados." });
