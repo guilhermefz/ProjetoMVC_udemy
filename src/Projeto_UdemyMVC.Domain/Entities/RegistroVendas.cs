@@ -10,27 +10,24 @@ namespace ProjetoMVC.Models
         public StatusVenda Status { get; set; }
         public long VendedorId { get; set; }
         public long PedidoItensId { get; set; }
-        public double Quantidade { get; set; }
         public ICollection<RegistroVendasItens>? RegistroPedidoItens { get; set; }
 
         public RegistroVendas()
         {
         }
 
-        public RegistroVendas(long id, DateOnly data, StatusVenda status, long vendedor, double quantidade)
+        public RegistroVendas(long id, DateOnly data, StatusVenda status, long vendedor)
         {
             Id = id;
             Data = data;
             Status = status;
             VendedorId = vendedor;
-            Quantidade = quantidade;
         }
-        public RegistroVendas( DateOnly data, StatusVenda status, long vendedor, double quantidade)
+        public RegistroVendas( DateOnly data, StatusVenda status, long vendedor)
         {
             Data = data;
             Status = status;
             VendedorId = vendedor;
-            Quantidade = quantidade;
         }
     }
 }
