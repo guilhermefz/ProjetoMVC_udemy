@@ -128,7 +128,7 @@
                 body: JSON.stringify(dadosDaVenda)
             }).then(response => response.json())
                 .then(data => {
-                console.log("Objeto 'data' recebido do servidor:", data);
+                console.log("Objeto 'data' recebido do servidor teste:", data);
                     showSuccessModal(data.mensagem); 
             })
 
