@@ -16,7 +16,7 @@ namespace ProjetoMVC.Data
 
         public DbSet<RegistroVendas> RegistroVendas { get; set; }
         public DbSet<Produto> Produto { get; set; }
-        public DbSet<RegistroVendasItens> PedidoItens {  get; set; }
+        public DbSet<RegistroVendasItens> RegistroVendasItens {  get; set; }
 
     }
 }
