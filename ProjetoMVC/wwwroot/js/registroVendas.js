@@ -89,6 +89,7 @@
             }
     if (form) {
         form.addEventListener('submit', (event) => {
+            debugger;
             event.preventDefault();
 
             const linhasDaTabela = tabelaItens.querySelectorAll('tbody tr');
