@@ -9,7 +9,7 @@ namespace ProjetoMVC.Models
         public DateOnly Data { get; set; }
         public StatusVenda Status { get; set; }
         public long VendedorId { get; set; }
-        public ICollection<RegistroVendasItens>? RegistroPedidoItens { get; set; }
+        public RegistroVendasItens? RegistroVendasItens { get; set; }
 
         public RegistroVendas()
         {

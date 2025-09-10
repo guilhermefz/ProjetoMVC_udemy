@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ProjetoMVC.Migrations
+namespace Projeto_UdemyMVC.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,23 @@ namespace ProjetoMVC.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departamento", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Preco = table.Column<double>(type: "double", nullable: false),
+                    QuantidadeEstoque = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -63,7 +80,6 @@ namespace ProjetoMVC.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Data = table.Column<DateOnly>(type: "date", nullable: false),
-                    Quantidade = table.Column<double>(type: "double", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     VendedorId = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -80,37 +96,37 @@ namespace ProjetoMVC.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Produto",
+                name: "RegistroVendasItens",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Preco = table.Column<double>(type: "double", nullable: false),
-                    QuantidadeEstoque = table.Column<long>(type: "bigint", nullable: false),
-                    RegistroVendasId = table.Column<long>(type: "bigint", nullable: true)
+                    ProdutoId = table.Column<long>(type: "bigint", nullable: false),
+                    RegistroVendasId = table.Column<long>(type: "bigint", nullable: false),
+                    Quantidade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produto", x => x.Id);
+                    table.PrimaryKey("PK_RegistroVendasItens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Produto_RegistroVendas_RegistroVendasId",
+                        name: "FK_RegistroVendasItens_RegistroVendas_RegistroVendasId",
                         column: x => x.RegistroVendasId,
                         principalTable: "RegistroVendas",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Produto_RegistroVendasId",
-                table: "Produto",
-                column: "RegistroVendasId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RegistroVendas_VendedorId",
                 table: "RegistroVendas",
                 column: "VendedorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistroVendasItens_RegistroVendasId",
+                table: "RegistroVendasItens",
+                column: "RegistroVendasId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vendedor_DepartamentoId",
@@ -123,6 +139,9 @@ namespace ProjetoMVC.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Produto");
+
+            migrationBuilder.DropTable(
+                name: "RegistroVendasItens");
 
             migrationBuilder.DropTable(
                 name: "RegistroVendas");

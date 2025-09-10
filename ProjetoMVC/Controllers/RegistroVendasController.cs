@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Projeto_UdemyMVC.Application.Interfaces;
+using ProjetoMVC.Mappers;
 using ProjetoMVC.MappersView;
 using ProjetoMVC.Models.Dtos;
 using ProjetoMVC.Models.ViewModels;
@@ -59,16 +60,6 @@ namespace ProjetoMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SalvarVenda([FromBody] RegistroVendasDto registro)
-        {
-            if (ModelState.IsValid)
-            {
-                await _registroVendasService.CriarRegistro(registro);
-                return Ok(new { mensagem = "Venda registrada com sucesso no banco de dados!" });
-            }
-
-            return BadRequest(new { mensagem = "Ocorreu um problema com os dados enviados." });
-        }
     }
+
 }

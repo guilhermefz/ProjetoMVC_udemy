@@ -8,7 +8,7 @@ using ProjetoMVC.Data;
 
 #nullable disable
 
-namespace ProjetoMVC.Migrations
+namespace Projeto_UdemyMVC.Data.Migrations
 {
     [DbContext(typeof(ProjetoMVCContext))]
     partial class ProjetoMVCContextModelSnapshot : ModelSnapshot
@@ -73,9 +73,6 @@ namespace ProjetoMVC.Migrations
                     b.Property<DateOnly>("Data")
                         .HasColumnType("date");
 
-                    b.Property<long>("PedidoItensId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -108,7 +105,8 @@ namespace ProjetoMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RegistroVendasId");
+                    b.HasIndex("RegistroVendasId")
+                        .IsUnique();
 
                     b.ToTable("RegistroVendasItens");
                 });
@@ -160,8 +158,8 @@ namespace ProjetoMVC.Migrations
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendasItens", b =>
                 {
                     b.HasOne("ProjetoMVC.Models.RegistroVendas", "RegistroVendas")
-                        .WithMany("RegistroPedidoItens")
-                        .HasForeignKey("RegistroVendasId")
+                        .WithOne("RegistroVendasItens")
+                        .HasForeignKey("ProjetoMVC.Models.RegistroVendasItens", "RegistroVendasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -186,7 +184,7 @@ namespace ProjetoMVC.Migrations
 
             modelBuilder.Entity("ProjetoMVC.Models.RegistroVendas", b =>
                 {
-                    b.Navigation("RegistroPedidoItens");
+                    b.Navigation("RegistroVendasItens");
                 });
 
             modelBuilder.Entity("ProjetoMVC.Models.Vendedor", b =>

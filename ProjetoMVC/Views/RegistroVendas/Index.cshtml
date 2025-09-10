@@ -21,12 +21,8 @@
         <th>@Html.DisplayNameFor(model => model.Data)</th>
         <th>
             @Html.DisplayNameFor(model => model.Status)</th>
-        <th>@Html.DisplayNameFor(model => model.Quantidade)</th>
         <th>
             @Html.DisplayNameFor(model => model.VendedorId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PedidoId)
         </th>
         <th>Actions</th>
         </thead>
@@ -38,9 +34,7 @@
                     <td>@Html.DisplayFor(model => item.Id)</td>
                     <td>@Html.DisplayFor(model => item.Data)</td>
                     <td>@Html.DisplayFor(model => item.Status)</td>
-                    <td>@Html.DisplayFor(model => item.Quantidade)</td>
                     <td>@Html.DisplayFor(model => item.VendedorId)</td>
-                    <td>@Html.DisplayFor(model => item.PedidoId)</td>
                     <td>
                         <form asp-action="Delete" asp-route-id="@item.Id" method="post"
                               onsubmit="return confirm('Tem certeza que deseja excluir?')">
@@ -49,6 +43,11 @@
                                 <i class="bi bi-trash3-fill"></i>
                             </button>
                         </form>
+                    </td>
+                    <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <i class="bi bi-info-circle"></i>
+                    </a>
                     </td>
                 </tr>
             }

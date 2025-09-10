@@ -24,28 +24,12 @@ namespace ProjetoMVC.Models.Services
         public async Task CriarRegistro(RegistroVendasDto registroVendas)
         {
             var registroEntity = registroVendas.MapToRegistro();
-            registroEntity.RegistroPedidoItens = new List<RegistroVendasItens>();
-
-            //foreach (var item in registroVendas.Itens)
-            //{
-            //    registroVendas.Quantidade = item.Quantidade;
-            //    registroVendas.ProdutoId = item.ProdutoId;
-            //}
-
-
-            foreach (var item in registroVendas.Itens)
-            {
-                var registroVendasItem = new RegistroVendasItens
-                {
-                    Quantidade = item.Quantidade,
-                    ProdutoId = item.ProdutoId,
-
-                };
-                registroEntity.RegistroPedidoItens.Add(registroVendasItem);
-            }
-
-            //var registroVenda = registroVendas.MapToRegistro();
             await _registroVendasRepository.CriarRegistroVendaAsync(registroEntity);
+
+            var registroItem = registroVendas.MapToItens();
+            registroItem.RegistroVendasId = registroEntity.Id;
+
+            await _registroVendasRepository.CriarPedidoItensAsync(registroItem);
         }
 
         public async  Task<List<RegistroVendas>> BuscarRegistros()

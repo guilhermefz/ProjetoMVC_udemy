@@ -9,17 +9,15 @@ namespace ProjetoMVC.Models.ViewModels
         public long Id { get; set; }
         public DateOnly Data { get; set; }
         public StatusVenda Status { get; set; }
+        [DisplayName("Quantidade")]
         public double Quantidade { get; set; }
-        [DisplayName("ID Do Vendedor")]
+        [DisplayName("Vendedor")]
         public long VendedorId { get; set; }
+        [DisplayName("Produto")]
         public long ProdutoId { get; set; }
-        [DisplayName("ID Do Pedido")]
         public long PedidoId { get; set; }
         public List<Vendedor> Vendedores { get; set; }
         public List<Produto> Produtos { get; set; }
-        [DisplayName("Produtos")]
-        public ICollection<RegistroVendasItens>? RegistroVendasItens { get; set; }
-        public List<ItensDto>? Itens { get; set; }
 
     }
     }

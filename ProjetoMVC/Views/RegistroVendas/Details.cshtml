@@ -1,0 +1,23 @@
+﻿@model RegistroVendas
+@{
+    ViewData["Title"] = "Detalhes da Venda";
+}
+<div>
+    <h2>@ViewData["Title"]</h2>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Data)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(Model => Model.VendedorId)
+        </dt>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a asp-action="Index">Back to list</a>
+</div>

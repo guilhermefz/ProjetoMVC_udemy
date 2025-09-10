@@ -29,71 +29,31 @@
                     <option value="">-- Select Vendedor --</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label asp-for="ProdutoId" class="control-label"></label>
+                <select class="form-select" asp-for="ProdutoId" asp-items="@(new SelectList(Model.Produtos, "Id", "Nome"))" class="form-control">
+                    <option value="">-- Select the product --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" class="form-control"/>
+            </div>
             <div class="form-group mt-2">
                 <input type="submit" value="Create" class="btn btn-success" />
-            </div>
-        </div>
-
-
-
-        <div class="col-md-6">
-            <div id="itens-container">
-            <h4 class="align-center">Itens do Pedido</h4>
-                <div class="form-group">
-                    <label asp-for="RegistroVendasItens" class="control-label"></label>
-                    <select id="itemProduto" class="form-select" asp-for="ProdutoId" asp-items="@(new SelectList(Model.Produtos, "Id", "Nome"))" class="form-control">
-                        <option value="">-- Select Produto --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Quantidade</label>
-                    <input id="itemQuantidade" type="number" class="form-control" />
-                </div>
-                <div class="form-group mt-2">
-                    <button type="button" id="btnAdicionarItem" class="btn btn-dark">Adicionar Produto</button>
-                </div>
-                <hr/>
-
-                <h4>Lista de produtos criados</h4>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Quantidade</th>
-                            <th>Valor Unitário</th>
-                            <th>Subtotal</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabelaItens">
-
-                    </tbody>
-                </table>
             </div>
         </div>
 
     </div>
     </div>
 </form>
-<div id="successModal" class="modal-overlay" style="display: none;">
-    <div class="success-modal-content">
 
-        <span class="modal-icon-simple">&#10004;</span>
-
-        <h3 id="modalTitle" class="modal-title">Parabéns!</h3>
-        <p id="modalMessage" class="modal-text">Sua venda foi registrada com sucesso.</p>
-        <button id="modalButton" class="modal-button">Concluir</button>
-    </div>
-</div>
-
-</div>
-<hr />
 
    
 
 
 @section Scripts {
-    <script> var produtosDisponiveis = @Html.Raw(Json.Serialize(Model.Produtos));</script>
+   
         
     <script src="~/js/registroVendas.js"></script>
 

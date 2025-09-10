@@ -9,8 +9,6 @@ namespace ProjetoMVC.Models.Dtos
         public DateOnly Data { get; set; }
         public StatusVenda Status { get; set; }
         public long VendedorId { get; set; }
-        public long PedidoItensId { get; set; }
-        public ICollection<RegistroVendasItens>? Itens { get; set; } = new List<RegistroVendasItens>();
         #endregion
 
         #region Criar Pedido Itens

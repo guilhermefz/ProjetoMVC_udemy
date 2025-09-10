@@ -1,4 +1,6 @@
-﻿namespace ProjetoMVC.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProjetoMVC.Models
 {
     public class RegistroVendasItens : BaseEntity
     {
